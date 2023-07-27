@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "455242964010",
+    "project_id": "occubuy-livespan",
+    "storage_bucket": "occubuy-livespan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455242964010:android:b134a6219eb31c7e6c7753",
+        "android_client_info": {
+          "package_name": "com.tasl.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455242964010-4shqhhcot25kqurldnl9p74du8g05ogr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tasl.android",
+            "certificate_hash": "33022334c3c7d575f5577abe45793cf32dab6b90"
+          }
+        },
+        {
+          "client_id": "455242964010-rs1abj1iphckrq31riq4efsk68791959.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tasl.android",
+            "certificate_hash": "d49503451d74af7d3c8b4e00a14ae19f47adc1e5"
+          }
+        },
+        {
+          "client_id": "455242964010-na6vlicrhej3h18tqskt61h6cam273pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkKIt0A-VpZc9bVxiFspYXuJ72NTot_I4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455242964010-na6vlicrhej3h18tqskt61h6cam273pb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "455242964010-lpkb9rcqm0q15mhlhdkj1g7231s529n4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tasl.ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

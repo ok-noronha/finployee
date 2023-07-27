@@ -1,0 +1,87 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" : />
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+  />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"> -->
+
+  <style id="smart-ui-styles">
+      #ff-onboarding-widget .ff-progress {
+        background-color: #e25450 !important;
+      }
+      #ff-onboarding-widget .ff-submit-button {
+        background-color: #e25450 !important;
+        border-color: #e25450 !important;
+      }
+      #ff-onboarding-widget .ff-button {
+        background-color: #e25450 !important;
+        border-color: #e25450 !important;
+      }
+
+      #ff-onboarding-widget .ff-frankie-icon.ff-tick-icon {
+        background-color: #e25450 !important;
+      }
+
+      #ff-onboarding-widget .ff-button-label {
+        background-color: #e25450 !important;
+        border-color: #e25450 !important;
+      }
+      #ff-onboarding-widget .ff-basic-button.button {
+        background-color: #e25450 !important;
+        border-color: #e25450 !important;
+      }
+
+      #ff-onboarding-widget .ff-text-link {
+        color: #e25450 !important;
+      }
+    </style>
+
+<!--  <script src="https://assets.frankiefinancial.io/onboarding/v4/ff-onboarding-widget.umd.min.js"></script>-->
+   <script src="https://assets.frankiefinancial.io/onboarding/v4/ff-onboarding-widget.umd.js"></script>
+
+
+  <script>
+      var applicantReference, ffToken;
+      function fromFlutterToken(token) {
+        applicantReference = token.split(",")[0];
+        ffToken = token.split(",")[1];
+      }
+
+      function initialiseWidget() {
+        var widgetConfiguration = {
+          mode: "demo",
+          // frankieBackendUrl:'https://backend.kycaml.frankiefinancial.io/',
+          frankieBackendUrl: "https://backend.demo.frankiefinancial.io",
+          documentTypes: ["PASSPORT", "DRIVERS_LICENCE", "NATIONAL_HEALTH_ID"],
+          idScanVerification: false,
+          checkProfile: "auto",
+          maxAttemptCount: 5,
+          googleAPIKey: false,
+          acceptedCountries: ["AUS", "NZL"],
+          requestAddress: true,
+          injectedCssTagID: "smart-ui-styles",
+        };
+
+        window.frankieFinancial.initialiseOnboardingWidget({
+          applicantReference: applicantReference,
+          config: widgetConfiguration,
+          ffToken: ffToken,
+        });
+      }
+
+      window.onload = function () {
+        initialiseWidget();
+      };
+
+      var body = document.getElementsByTagName("body")[0];
+    </script>
+</head>
+
+<body>
+<ff-onboarding-widget></ff-onboarding-widget>
+</body>
+</html>

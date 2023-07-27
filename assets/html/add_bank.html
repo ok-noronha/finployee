@@ -1,0 +1,425 @@
+<html>
+
+<head>
+
+    <style >
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 20px;
+    letter-spacing: 0.02em;
+}
+
+.wrapper {
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+form {
+    margin-bottom: 30px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 20px;
+}
+*{
+        max-width: 100% !important;
+    }
+@media (min-width: 600px) {
+    
+    form {
+        padding: 40px;
+    }
+}
+
+.button {
+    display: block;
+    position: relative;
+    align-items: center;
+    appearance: none;
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    padding: 0 20px;
+    height: 60px;
+    text-decoration: none;
+    background-color: #E25450;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-top: 16px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: 0px 1px 12px rgba(33, 0, 150, 0.25);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}
+
+.button-loading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000645;
+}
+
+.button-loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    border-color: currentColor;
+    border-style: solid;
+    border-radius: 99999px;
+    border-width: 2px;
+    border-left-color: transparent;
+    color: #fff;
+    animation: rotate 450ms linear 0ms infinite;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #000645;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+}
+
+.field-container {
+    margin-bottom: 20px;
+}
+
+.field-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.field-columns>* {
+    flex: 0 1 46%;
+}
+
+.hosted-field,
+.demo-field {
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+
+.demo-field {
+    appearance: none;
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: #000645;
+}
+
+.select {
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23727590' d='M6.34315 7.75734L4.92894 9.17155L12 16.2426L19.0711 9.17158L17.6568 7.75737L12 13.4142L6.34315 7.75734Z' /%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 1.5em auto;
+}
+
+.hosted-field-invalid {
+    border-color: #cc0001;
+}
+
+.hosted-field-valid {
+    border-color: #10b981;
+}
+
+.hosted-field-focus,
+.demo-field:focus {
+    border-color: #210096;
+    box-shadow: 0px 1px 12px rgba(33, 0, 150, 0.25);
+    outline: none;
+}
+
+.error {
+    color: #cc0001;
+    background-color: #ffe6e6;
+    padding: 2px 8px;
+    margin-top: 12px;
+    font-size: 14px;
+    border-radius: 3px;
+    display: none;
+}
+
+.error.visible {
+    display: inline-block;
+}
+
+.disclaimer {
+    color: #828282;
+    font-size: 14px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.response {
+    display: none;
+    margin-top: 16px;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.response-success {
+    display: block;
+    background-color: #dff9ec;
+    color: #1b643a;
+}
+
+.response-error {
+    display: block;
+    background-color: #ffe6e6;
+    color: #cc0000;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 767px) {
+    *{
+        max-width: 100% !important;
+    }
+}
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<form>
+    <div class='field-container bankAccountName-container'>
+        <label for='account-name-field' class='required'>Account Name</label>
+        <div id='account-name-field' class='hosted-field'></div>
+        <div class='error'></div>
+    </div>
+
+        <div class='field-container bankRoutingNumber-container'>
+            <label for='routing-number-field' class='required'>Routing Number (BSB)</label>
+            <div id='routing-number-field' class='hosted-field'></div>
+            <div class='error'></div>
+        </div>
+
+        <div class='field-container bankAccountNumber-container'>
+            <label for='account-number-field' class='required'>Account Number</label>
+            <div id='account-number-field' class='hosted-field'></div>
+            <div class='error'></div>
+        </div>
+
+    <div class='field-container'>
+        <label for='bank-name-field' class='required'>Bank Name</label>
+        <input id='bank-name-field' type='text' class='demo-field' />
+    </div>
+
+  
+        <div class='field-container'>
+            <label for='account-type-field' class='required'>Account Type</label>
+            <select id='account-type-field' name='account-type' class='demo-field select'>
+                <option value='savings' selected>Savings</option>
+                <option value='checking'>Checking</option>
+            </select>
+        </div>
+
+        <div class='field-container'>
+            <label for='holder-type-field' class='required'>Holder Type</label>
+            <select id='holder-type-field' name='holder-type' class='demo-field select'>
+                <option value='personal' selected>Personal</option>
+                <option value='business'>Business</option>
+            </select>
+        </div>
+
+    <div class='field-container'>
+        <label for='country-field' class='required'>Country</label>
+        <select id='country-field' name='country' class='demo-field select'>
+            <option value='AUS' selected>AUS</option>
+            <option value='USA'>USA</option>
+        </select>
+    </div>
+
+        <div class='field-container'>
+            <label for='payout-currency-field'>Payout Currency</label>
+            <select id='payout-currency-field' name='payout-currency' class='demo-field select'>
+                <option value='AUD' selected>AUD</option>
+                <option value='USD'>USD</option>
+            </select>
+        </div>
+
+        <div class='field-container'>
+            <label for='currency-field'>Currency</label>
+            <select id='currency-field' name='currency' class='demo-field select'>
+                <option value='AUD' selected>AUD</option>
+                <option value='USD'>USD</option>
+            </select>
+        </div>
+
+    <button class='button'>Add Bank Account</button>
+    <div class='response'></div>
+    <div class='disclaimer'>
+        Payment securely processed by Assembly Payments.
+    </div>
+</form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.2.20180112/classList.min.js"></script>
+    <script src="https://hosted.assemblypay.com/assembly.js"></script>
+    <script src= "https://hosted-fields.assemblypay.com/assembly.js"></script>
+
+    <script>
+    var cardTokenAuth,uid;
+    function fromFlutterToken(token){
+        cardTokenAuth = token.split(',')[0];
+        uid = token.split(',')[1];
+    }
+        var styles = {
+            input: {
+                color: "#000645",
+                "font-family": "system-ui, -apple-system, BlinkMacSystemFont",
+                "letter-spacing": "0.02em"
+            },
+            ".invalid": {
+                color: "#cc0001"
+            },
+            "::placeholder": {
+                color: "#757575"
+            }
+        };
+
+        var hostedFields = assembly.hostedFields({
+            environment: "prelive"
+            //pre-live
+        });
+        var accountName = hostedFields.create("bankAccountName", {
+            styles: styles,
+            placeholder: "Account Holder Full Name"
+        });
+        var routingNumber = hostedFields.create("bankRoutingNumber", {
+            styles: styles
+        });
+        var accountNumber = hostedFields.create("bankAccountNumber", {
+            styles: styles
+        });
+        accountName.mount("#account-name-field");
+        routingNumber.mount("#routing-number-field");
+        accountNumber.mount("#account-number-field");
+
+        var fields = [accountName, routingNumber, accountNumber];
+        fields.forEach((field) => {
+            field.on("change", function (event) {
+                var errorElement = document.querySelector(
+                    "." + event.fieldType + "-container .error"
+                );
+                toggleError(errorElement, event);
+            });
+        });
+
+        var form = document.querySelector("form");
+        var submitButton = form.querySelector(".button");
+        var responseContainer = document.querySelector(".response");
+
+        function toggleError(element, event) {
+            if (event.error) {
+                element.innerText = event.error.message;
+                element.classList.add("visible");
+            } else {
+                element.innerText = "";
+                element.classList.remove("visible");
+            }
+        }
+
+        form.addEventListener("submit", function (event) {
+  
+            event.preventDefault();
+            submitButton.disabled = true;
+            submitButton.classList.add("button-loading");
+
+            hostedFields
+                .createBankAccount({
+                    token: cardTokenAuth,
+                    user_id: uid,
+                    bank_name: form.querySelector("#bank-name-field").value,
+                    account_type: form.querySelector("#account-type-field").value,
+                    holder_type: form.querySelector("#holder-type-field").value,
+                    country: form.querySelector("#country-field").value,
+                    payout_currency:
+                        form.querySelector("#payout-currency-field").value || undefined,
+                    currency: form.querySelector("#currency-field").value || undefined
+                })
+                .then(function (response) {
+                    resetSubmitButton();
+
+                    // handle create card account succeeded
+                    responseContainer.classList.add("response-success");
+                    responseContainer.innerText = "Bank account successfully created.";
+                    creationCallback.postMessage('true');
+
+                })
+                .catch(function (response) {
+        
+                    resetSubmitButton();
+                    // handle errors
+                    responseContainer.classList.add("response-error");
+                    if (response.errors && response.errors.token) {
+                        responseContainer.innerText = "Your token is not authorized.";
+                    } else {
+                        responseContainer.innerText =
+                            "There was an error creating your bank account.";
+
+                        responseContainer.innerText = response.toString();
+                    }
+                   
+                    creationCallback.postMessage('false');
+
+                });
+        });
+
+        function resetSubmitButton() {
+            submitButton.disabled = false;
+            submitButton.classList.remove("button-loading");
+        }
+    </script>
+
+
+
+</body>
+
+
+
+
+</html>

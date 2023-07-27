@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Hosted Form test page</title>
+    <meta http-equiv="refresh" content="1800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+                    }
+
+        #container {
+            max-width: 400px;
+            border: 0.5px solid #bdbdbd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="https://hosted.assemblypay.com/assembly.js"></script>
+    <script>
+        
+    var cardTokenAuth;
+        function fromFlutterToken(token) {
+                cardTokenAuth = token;
+              let dropinHandler = Dropin.create({
+                cardTokenAuth: cardTokenAuth,
+                environment: 'prelive',
+                //prelive
+                targetElementId: '#container',
+                cardAccountCreationCallback: function (cardAccountResult) {
+                    creationCallback.postMessage('true');
+                }
+            },function (error, instance) {
+                creationCallback.postMessage('false');
+                
+            });
+        }
+       
+
+        
+    </script>
+</body>
+
+
+</html>
